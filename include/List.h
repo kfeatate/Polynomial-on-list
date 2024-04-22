@@ -5,7 +5,7 @@
 template <typename T>
 class TList {
 	Node<T>* first;
-	size_t sz; //реальный размер списка 2*x^2*y^3*z^4+6*x^6*y^7*z^5  -3*x^5*y^5*z^1+8*x^2*y^3*z^4
+	size_t sz;
 public:
 	TList() {
 		sz = 0;
@@ -44,17 +44,6 @@ public:
 		return Iterator<T>(first);
 	}
 	Iterator<T> end() {
-		/*auto current = first;
-		if (current) {
-			while (current != nullptr) {
-				current = current->next;
-			}
-
-		return Iterator<T>(current);*/
-		/*}
-		else {
-			return Iterator<T>(first);
-		}*/
 		return Iterator<T>(nullptr);
 	}
 	friend class Polynomial;
@@ -91,9 +80,9 @@ void TList<T>::insert(const T& val, int pos) {
 		Node<T>* node = new Node<T>(val);
 		auto current = first;
 		for (int i = 0; i < pos-1; i++) {
-			current = current->next; //предшествующий
+			current = current->next;
 		}
-		auto current2 = current->next; //то что нам нужно
+		auto current2 = current->next;
 		current->next = node;
 		node->next = current2;
 		sz++;

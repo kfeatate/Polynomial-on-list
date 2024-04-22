@@ -1,7 +1,55 @@
 #include "gtest.h"
 #include "Polynomial.h"
 
-TEST(Polynomial, can_create_monom) {
+TEST(Monom, can_create_monom) {
+	EXPECT_NO_THROW(Monom monom());
+}
+
+TEST(Monom, can_add_monoms) {
+	std::unordered_map<char, int> expr;
+	expr['x'] = 2;
+	expr['y'] = 3;
+	expr['z'] = 4;
+	Monom m1(2, expr);
+	Monom m2(1, expr);
+	Monom res = m1 + m2;
+	Monom proverka(3, expr);
+	EXPECT_EQ(res, proverka);
+}
+
+TEST(Monom, can_sub_monoms) {
+	std::unordered_map<char, int> expr;
+	expr['x'] = 2;
+	expr['y'] = 3;
+	expr['z'] = 4;
+	Monom m1(2, expr);
+	Monom m2(1, expr);
+	Monom res = m1 - m2;
+	Monom proverka(1, expr);
+	EXPECT_EQ(res, proverka);
+}
+
+TEST(Monom, can_mult_monoms) {
+	std::unordered_map<char, int> expr;
+	expr['x'] = 1;
+	expr['y'] = 1;
+	expr['z'] = 0;
+	Monom m1(2, expr);
+	std::unordered_map<char, int> expr2;
+	expr2['x'] = 2;
+	expr2['y'] = 0;
+	expr2['z'] = 1;
+	Monom m2(3, expr2);
+	Monom res = m1 * m2;
+	std::unordered_map<char, int> expr_res;
+	expr_res['x'] = 3;
+	expr_res['y'] = 1;
+	expr_res['z'] = 1;
+	Monom proverka(6, expr_res);
+	EXPECT_EQ(res, proverka);
+}
+
+TEST(Polynomial, can_create_polynomial) {
 	EXPECT_NO_THROW(Polynomial Polynom());
 }
 
@@ -12,7 +60,7 @@ TEST(Polynomial, can_push_monom) {
 	EXPECT_NO_THROW(pol.push(monom));
 }
 
-TEST(Polynomial, can_folding) {
+TEST(Polynomial, can_folding_polynomials) {
 	std::unordered_map<char, int> expr1 = { {'x', 2}, {'y', 3}, {'z', 4} };
 	std::unordered_map<char, int> expr2 = { {'x', 1}, {'y', 5}, {'z', 6}};
 	Monom monom1 = Monom(-2, expr1);
@@ -35,7 +83,7 @@ TEST(Polynomial, can_folding) {
 	ASSERT_EQ(res, proverka);
 }
 
-TEST(Polynomial, can_sub) {
+TEST(Polynomial, can_sub_polynomials) {
 	std::unordered_map<char, int> expr1 = { {'x', 2}, {'y', 3}, {'z', 4} };
 	std::unordered_map<char, int> expr2 = { {'x', 1}, {'y', 5}, {'z', 6} };
 	Monom monom1 = Monom(-2, expr1);
@@ -91,7 +139,7 @@ TEST(Polynomial, can_multiply_polynomials) {
 	ASSERT_EQ(res, proverka);
 }
 
-TEST(Polynomial, can_multiplay_on_scalar) {
+TEST(Polynomial, can_multiplay_polynomial_on_scalar) {
 	std::unordered_map<char, int> expr1 = { {'x', 2}, {'y', 3}, {'z', 4} };
 	std::unordered_map<char, int> expr2 = { {'x', 1}, {'y', 5}, {'z', 6} };
 	Monom monom1 = Monom(-2, expr1);

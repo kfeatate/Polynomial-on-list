@@ -27,7 +27,7 @@ public:
 	friend std::istream& operator>>(std::istream& istr, Monom& monom) { 
 		std::string str;
 		istr >> str;
-		std::stringstream ss(str); //рассматриваем строку как поток
+		std::stringstream ss(str); 
 		std::string multiplier;
 		std::getline(ss, multiplier, '*');
 		monom.koeff = std::stod(multiplier);

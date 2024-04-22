@@ -14,10 +14,6 @@ public:
 	Iterator(const Iterator& _iter) {
 		iter = _iter.iter;
 	}
-	/*~Iterator() {
-		iter = nullptr;
-		delete iter;
-	}*/
 	 Iterator& operator++() {
 		iter = iter->next;
 		return *this;

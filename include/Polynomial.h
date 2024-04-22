@@ -19,7 +19,6 @@ public:
 	Polynomial operator-(Polynomial& pol);
 	Polynomial operator*(Polynomial& pol);
 	Polynomial operator*(double var);
-	//bool operator==(Polynomial& pol);
 	friend std::istream& operator>>(std::istream& istr, Polynomial& pol) {
 		std::string str;
 		istr >> str;
