@@ -5,7 +5,11 @@
 template <typename T>
 class TList {
 	Node<T>* first;
+<<<<<<< HEAD
 	size_t sz;
+=======
+	size_t sz; 
+>>>>>>> 968f3b0bcd639bb83f686024e62fa7e82a522a3a
 public:
 	TList() {
 		sz = 0;
